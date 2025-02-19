@@ -4,43 +4,40 @@ import "../sneakers.css";
 import sneakersData from "../data/sneakersData";
 
 function Sneakers() {
-  // Hook to store and update dropdown states dynamically.
+  //Hook to store and update dropdown states dynamically.
   const [modelOpen, setModelOpen] = useState(false);
   const [brandOpen, setBrandOpen] = useState(false);
   const [sizeOpen, setSizeOpen] = useState(false);
 
-  // State for selected brands
+  //State for selected brands
   const [selectedBrands, setSelectedBrands] = useState([]);
 
-  // Function to handle brand selection
+  //handles brand selection
   const brandSelection = (brand) => {
     setSelectedBrands((prevBrands) =>
       prevBrands.includes(brand)
-        ? prevBrands.filter((b) => b !== brand) // Remove brand if already selected
-        : [...prevBrands, brand] // Add brand if not selected
+        ? prevBrands.filter((b) => b !== brand) 
+        : [...prevBrands, brand] 
     );
   };
 
-  // Filtering sneakers based on selected brands
+  //used for filtering sneakers based on brand
   const filteredSneakers =
     selectedBrands.length === 0
-      ? sneakersData // Show all sneakers if no brand is selected
+      ? sneakersData 
       : sneakersData.filter((sneaker) => selectedBrands.includes(sneaker.brand));
 
   return (
     <div className="sneakers-container">
-      {/* Sidebar Section */}
       <div className="sidebar">
         <div className="sidebar-filters">
           <h2 className="filter-header">FILTER</h2>
 
-          {/* Model Filter */}
           <div className="filter-section">
             <button className="filter-title" onClick={() => setModelOpen(!modelOpen)}>
               Model {modelOpen ? "▲" : "▼"}
             </button>
 
-            {/* Show options only when modelOpen is true */}
             {modelOpen && (
               <div className="filter-options">
                 <label><input type="checkbox" /> Jordan 1</label>
@@ -60,13 +57,11 @@ function Sneakers() {
             )}
           </div>
 
-          {/* Brand Filter */}
           <div className="filter-section">
             <button className="filter-title" onClick={() => setBrandOpen(!brandOpen)}>
               Brand {brandOpen ? "▲" : "▼"}
             </button>
 
-            {/* Show options only when brandOpen is true */}
             {brandOpen && (
               <div className="filter-options">
                 <label>
@@ -101,13 +96,11 @@ function Sneakers() {
             )}
           </div>
 
-          {/* Size Filter */}
           <div className="filter-section">
             <button className="filter-title" onClick={() => setSizeOpen(!sizeOpen)}>
               Size {sizeOpen ? "▲" : "▼"}
             </button>
 
-            {/* Show options only when sizeOpen is true */}
             {sizeOpen && (
               <div className="filter-options">
                 <label><input type="checkbox" /> 1</label>
@@ -128,7 +121,7 @@ function Sneakers() {
         </div>
       </div>
 
-      {/* Main Content Section */}
+      
       <div className="sneaker-content">
         <h1 className="sneakers-header">SHOP ALL SNEAKERS</h1>
         <p className="sneakers-description">
